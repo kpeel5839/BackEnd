@@ -33,7 +33,7 @@ public class MemoryMemberRepository implements MemberRepository {
     //꼭MemberRepository 에서 interface 생성할떄 clearStore() 도 생성하고 store.clear()로 꼭 비워주는 행위를 해주어야 테스트케이스가 상호의존적으로 돌아가지 않는다.
     @Override
     public List<Member> findAll() {
-        return new ArrayList<>(store.values()); //arraylist에서 그냥 다 반환함 store에 있는 value를 다
+        return new ArrayList<Member>(store.values()); //arraylist에서 그냥 다 반환함 store에 있는 value를 다
     }
 
     public void clearStore(){
