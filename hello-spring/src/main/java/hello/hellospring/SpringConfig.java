@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringConfig {
 
-    @Bean
+    @Bean //Bean is connect on server
     public MemberService memberService(){
         return new MemberService(memberRepository());
     }
