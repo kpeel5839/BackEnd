@@ -7,27 +7,28 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
-    MemberRepository memberRepository = new MemoryMemberRepository();
-    MemberService memberService;
 
-    @BeforeEach
-    public void beforeEach(){
-        memberService = new MemberService(memberRepository);
-    }
-    @AfterEach
-    public void afterEach(){
-        memberRepository.storeClear();
-    }
+    @Autowired MemberService memberService;
+    @Autowired MemberRepository memberRepository;
+
     @Test
+    @Commit
     void 회원가입() {
         Member member = new Member();
-        member.setName("spring");
-        memberService.join(member);
-        Member result_Member = memberService.findOne(member.getId()).get();
+        member.setName("spring100");
+
+        Long saveId = memberService.join(member);
+
+        Member result_Member = memberService.findOne(saveId).get();
         Assertions.assertThat(result_Member).isEqualTo(member);
     }
     @Test

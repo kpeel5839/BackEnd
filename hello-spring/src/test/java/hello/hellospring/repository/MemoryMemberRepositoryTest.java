@@ -11,10 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MemoryMemberRepositoryTest {
     MemberRepository memberRepository = new MemoryMemberRepository();
-    @AfterEach
-    public void afterEach(){
-        memberRepository.storeClear();
-    }
+    
     @Test
     void save() {
         Member member = new Member();
