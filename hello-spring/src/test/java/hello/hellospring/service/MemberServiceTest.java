@@ -13,15 +13,15 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
-@SpringBootTest
-@Transactional
+@SpringBootTest //spinrgBootTest 하면 그냥 실제로 spring 돌리는 것처럼 test할 수가 있음
+@Transactional //transactional 을 서로 겹치지 않게 계속 비워주는 것임
 class MemberServiceTest {
 
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
 
     @Test
-    @Commit
+    @Commit //commit annotation은 실제로 데이터베이스에 적용되게 하는 것임
     void 회원가입() {
         Member member = new Member();
         member.setName("spring100");
